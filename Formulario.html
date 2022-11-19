@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="form.png">
+    <title>Formulário de Contato</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+
+        function ApenasLetras(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                } else if (e) {
+                    var charCode = e.which;
+                } else {
+                    return true;
+                }
+                if (
+                    (charCode > 30 && charCode < 33) ||
+                    (charCode > 64 && charCode < 91) ||
+                    (charCode > 96 && charCode < 123) ||
+                    (charCode > 191 && charCode <= 255) // letras com acentos
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (err) {
+                alert(err.Description);
+            }
+        }
+    </script>
+    <style>
+        h1 {
+            text-align: center;
+            color: darkblue;
+            font-size: 40px;
+            font-family: cursive;
+            border: blue;
+            text-shadow: 2px 3px red;
+
+        }
+
+        p {
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        input:required,
+        select:required {
+            border: 5px solid red;
+        }
+
+        input:invalid,
+        select:invalid {
+            border: 5px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+        </nav>
+        <h1>Formulário de Contato</h1>
+    </header>
+    <main>
+        <p>Preencha os campos abaixos.</p>
+        <form action="processa_form.php" method="get" target="_blank">
+            <label for="nome">Informe seu Nome Completo:</label>
+            <input type="text" name="nome" size="40" required placeholder="Digite seu Nome" autofocus autocomplete="off"
+                class="campo" onkeypress="return ApenasLetras(event,this);"><br>
+            <br>
+            <label for="cidade">Informe sua Cidade:</label>
+            <input type="text" name="cidade" size="30" required placeholder="Digite sua Cidade" autocomplete="off"
+                class="campo" onkeypress="return ApenasLetras(event,this);"><br>
+            <br>
+            <label for="email">Digite seu Email:</label>
+            <input type="email" name="email" required placeholder="Digite um Email" autocomplete="off"><br>
+            <br>
+            <label for="data_nasc"> Digite sua Data de Nascimento: </label>
+            <input type="date" name="data_nasc" id="data_nasc"><br>
+            <br>
+            <label for="number">Digite um telefone de contato:</label>
+            <input type="text" class="form-control" placeholder="(ddd)xxxxx-xxxx" id="celular" name="celular"
+                autocomplete="off" required><br>
+
+            <script type="text/javascript">
+                $("#celular").mask("(00) 00000-0000");
+            </script>
+
+            <br>
+            <hr>
+            <p> Escolha seu sexo. </p>
+            <input type="radio" name="sexo" value="masculino"> Masculino<br>
+            <input type="radio" name="sexo" value="feminino"> Feminino<br>
+            <input type="radio" name="sexo" value="outros"> Outros<br>
+            <br>
+            <hr>
+            <p> Escolha sua cor preferida. </p>
+            <input type="color" name="cor_favorita">
+            <br>
+            <hr>
+            <p> Envie uma foto sua. </p>
+            <input type="file" name="arquivo">
+            <br>
+            <hr>
+            <p>Entre com sua Senha de 8 a 10 digitos.</p>
+            <input type="password" name="Senha" minlength="8" maxlength="10" required><br><br>
+            <br>
+            <br>
+            <input type="reset" value="Limpar Formulario">
+            <input type="image" src="img_submit.gif" alt="Submit" width="40" height="40">
+            
+        </form>
+    </main>
+
+</body>
+
+</html>
